@@ -1,0 +1,35 @@
+{
+  "name": "glsl-tech-night-2018",
+  "version": "1.0.0",
+  "description": "GLSL Tech Nightのデモプログラム",
+  "scripts": {
+    "start": "npm run server & npm run watch",
+    "server": "browser-sync start -c ./config/bs-config.js",
+    "build": "webpack --mode development --config ./config/webpack.config.js",
+    "watch": "webpack --mode development --config ./config/webpack.config.js -w",
+    "prod": "webpack --mode production --config ./config/webpack.config.js"
+  },
+  "author": "@P5Aholic",
+  "license": "MIT",
+  "browserslist": [
+    "last 2 Chrome version",
+    "last 2 Firefox version",
+    "last 2 Safari version",
+    "last 2 Edge version",
+    "last 2 ChromeAndroid version",
+    "last 2 iOS version",
+    ">= 5%"
+  ],
+  "dependencies": {
+    "@babel/polyfill": "^7.0.0",
+    "three": "^0.96.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "babel-loader": "^8.0.0",
+    "webpack": "^4.17.2",
+    "webpack-cli": "^3.1.0",
+    "webpack-glsl-loader": "^1.0.1"
+  }
+}
