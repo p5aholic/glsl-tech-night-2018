@@ -5,8 +5,8 @@
   "scripts": {
     "start": "npm run server & npm run watch",
     "server": "browser-sync start -c ./config/bs-config.js",
-    "build": "webpack --mode development --config ./config/webpack.config.js",
     "watch": "webpack --mode development --config ./config/webpack.config.js -w",
+    "build": "webpack --mode development --config ./config/webpack.config.js",
     "prod": "webpack --mode production --config ./config/webpack.config.js"
   },
   "author": "@P5Aholic",
@@ -22,12 +22,15 @@
   ],
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
-    "three": "^0.96.0"
+    "dat.gui": "^0.7.2",
+    "three": "^0.96.0",
+    "webfontloader": "^1.6.28"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "babel-loader": "^8.0.0",
+    "browser-sync": "^2.24.7",
     "webpack": "^4.17.2",
     "webpack-cli": "^3.1.0",
     "webpack-glsl-loader": "^1.0.1"
