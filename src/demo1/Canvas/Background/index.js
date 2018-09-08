@@ -20,7 +20,7 @@ export default class Background extends Mesh {
       uniforms: {
         time: { type: 'f', value: 0 },
         nStart: { type: 'fv', value: [0, 0, 0] },
-        nScale: { type: 'fv', value: [3, 3] }
+        nScale: { type: 'fv', value: [0.001, 0.001] }
       },
       vertexShader: vertHead + vertMain,
       fragmentShader: fragHead + noise3d + fragMain,
@@ -31,7 +31,7 @@ export default class Background extends Mesh {
       x: 0, y: 0, z: 0
     };
     this.noiseScale = {
-      x: 3, y: 3
+      x: 0.001, y: 0.001
     };
 
     const gui = new dat.GUI();
@@ -48,10 +48,10 @@ export default class Background extends Mesh {
     });
 
     const f2 = gui.addFolder('Noise Scale');
-    f2.add(this.noiseScale, 'x', 1, 30).onChange(value => {
+    f2.add(this.noiseScale, 'x', 0.001, 0.01).onChange(value => {
       this.material.uniforms.nScale.value[0] = value;
     });
-    f2.add(this.noiseScale, 'y', 1, 30).onChange(value => {
+    f2.add(this.noiseScale, 'y', 0.001, 0.01).onChange(value => {
       this.material.uniforms.nScale.value[1] = value;
     });
   }
