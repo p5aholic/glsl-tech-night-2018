@@ -1,3 +1,9 @@
+precision mediump float;
+
+uniform float time;
+uniform vec3 nStart;
+uniform vec2 nScale;
+
 //
 // Description : Array and textureless GLSL 2D/3D/4D simplex 
 //               noise functions.
@@ -13,22 +19,16 @@
 vec3 mod289(vec3 x) {
   return x - floor(x * (1.0 / 289.0)) * 289.0;
 }
-
 vec4 mod289(vec4 x) {
   return x - floor(x * (1.0 / 289.0)) * 289.0;
 }
-
 vec4 permute(vec4 x) {
-     return mod289(((x*34.0)+1.0)*x);
+  return mod289(((x*34.0)+1.0)*x);
 }
-
-vec4 taylorInvSqrt(vec4 r)
-{
+vec4 taylorInvSqrt(vec4 r) {
   return 1.79284291400159 - 0.85373472095314 * r;
 }
-
-float snoise(vec3 v)
-  { 
+float snoise(vec3 v) {
   const vec2  C = vec2(1.0/6.0, 1.0/3.0) ;
   const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);
 
@@ -100,4 +100,20 @@ float snoise(vec3 v)
   m = m * m;
   return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1), 
                                 dot(p2,x2), dot(p3,x3) ) );
-  }
+}
+
+void main() {
+  vec2 p = gl_FragCoord.xy; // 描画するピクセルの座標
+
+  float nx = nStart.x + p.x * nScale.x; // ノイズのｘ座標
+  float ny = nStart.y + p.y * nScale.y; // ノイズのy座標
+  float nz = nStart.z; // ノイズのｚ座標
+  // float nz = nStart.z + time * 0.5;
+
+  float n = snoise(vec3(nx, ny, nz)); // ノイズの座標を与えて値を得る（およそ-1〜1の値が返ってくる）
+  n = (1.0 + n) * 0.5; // 0〜1に変換
+
+  vec4 color = vec4(n, n, n, 1.0);
+
+  gl_FragColor = color;
+}

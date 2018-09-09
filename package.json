@@ -11,17 +11,7 @@
   },
   "author": "@P5Aholic",
   "license": "MIT",
-  "browserslist": [
-    "last 2 Chrome version",
-    "last 2 Firefox version",
-    "last 2 Safari version",
-    "last 2 Edge version",
-    "last 2 ChromeAndroid version",
-    "last 2 iOS version",
-    ">= 5%"
-  ],
   "dependencies": {
-    "@babel/polyfill": "^7.0.0",
     "dat.gui": "^0.7.2",
     "three": "^0.96.0",
     "webfontloader": "^1.6.28"

@@ -11,13 +11,16 @@ export default class Canvas {
   constructor() {
     this.container = document.getElementById('CanvasContainer');
     Config.dpr = window.devicePixelRatio;
-    
+
+    // Sceneの作成
     this.scene = new Scene();
 
+    // Cameraの作成
     this.camera = new OrthographicCamera(-1, 1, 1, -1, 1, 1000);
     this.camera.position.set(0, 0, 100);
     this.camera.lookAt(this.scene.position);
 
+    // Rendererの作成
     this.renderer = new WebGLRenderer({
       antialias : false,
       alpha     : false,
@@ -29,6 +32,7 @@ export default class Canvas {
     this.renderer.setPixelRatio(Config.dpr);
     this.container.appendChild(this.renderer.domElement);
 
+    // 描画する背景の作成
     this.background = new Background();
     this.scene.add(this.background);
 

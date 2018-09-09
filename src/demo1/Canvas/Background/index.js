@@ -6,11 +6,8 @@ import { RawShaderMaterial } from 'three/src/materials/RawShaderMaterial';
 import dat from 'dat.gui';
 
 import Config from '../Config';
-import noise3d from 'Libs/noise3d.glsl';
-import vertHead from './shader/vert/head.glsl';
-import vertMain from './shader/vert/main.glsl';
-import fragHead from './shader/frag/head.glsl';
-import fragMain from './shader/frag/main.glsl';
+import vertexShader from './shader/vert.glsl';
+import fragmentShader from './shader/frag.glsl';
 
 export default class Background extends Mesh {
   constructor() {
@@ -20,10 +17,10 @@ export default class Background extends Mesh {
       uniforms: {
         time: { type: 'f', value: 0 },
         nStart: { type: 'fv', value: [0, 0, 0] },
-        nScale: { type: 'fv', value: [0.001, 0.001] }
+        nScale: { type: 'fv', value: [0.005, 0.005] }
       },
-      vertexShader: vertHead + vertMain,
-      fragmentShader: fragHead + noise3d + fragMain,
+      vertexShader: vertexShader,
+      fragmentShader: fragmentShader,
       transparent: true
     });
 
@@ -31,9 +28,13 @@ export default class Background extends Mesh {
       x: 0, y: 0, z: 0
     };
     this.noiseScale = {
-      x: 0.001, y: 0.001
+      x: 0.005, y: 0.005
     };
 
+    this.setGUI();
+  }
+
+  setGUI() {
     const gui = new dat.GUI();
 
     const f1 = gui.addFolder('Noise Start');
@@ -48,10 +49,10 @@ export default class Background extends Mesh {
     });
 
     const f2 = gui.addFolder('Noise Scale');
-    f2.add(this.noiseScale, 'x', 0.001, 0.01).onChange(value => {
+    f2.add(this.noiseScale, 'x', 0.001, 0.05).onChange(value => {
       this.material.uniforms.nScale.value[0] = value;
     });
-    f2.add(this.noiseScale, 'y', 0.001, 0.01).onChange(value => {
+    f2.add(this.noiseScale, 'y', 0.001, 0.05).onChange(value => {
       this.material.uniforms.nScale.value[1] = value;
     });
   }

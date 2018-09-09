@@ -13,12 +13,6 @@ module.exports = {
     path: PUBLIC_PATH + '/assets/js/'
   },
 
-  resolve: {
-    alias: {
-      Libs: SRC_PATH + '/libs/'
-    }
-  },
-
   module: {
     rules: [
       {
