@@ -5,7 +5,8 @@ const PUBLIC_PATH = path.resolve(__dirname, '../public');
 
 module.exports = {
   entry: {
-    demo1: SRC_PATH + '/demo1/main.js'
+    demo1: SRC_PATH + '/demo1/main.js',
+    demo2: SRC_PATH + '/demo2/main.js'
   },
 
   output: {
