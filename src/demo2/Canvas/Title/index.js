@@ -51,6 +51,7 @@ export default class Title extends Mesh {
     });
   }
 
+  // 2D Canvasからテクスチャを作成する
   createFontTexture(options) {
     const canvas = document.createElement('canvas');
     const width = options.width * Config.dpr;
