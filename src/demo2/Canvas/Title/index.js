@@ -14,7 +14,7 @@ export default class Title extends Mesh {
   constructor() {
     super();
 
-    const texture = this.createFontTexture({
+    const texture = this.createTexture({
       text: 'GLSL Tech Night',
       width: 2048,
       height: 1024,
@@ -25,7 +25,7 @@ export default class Title extends Mesh {
       uniforms: {
         texture: { type: 't', value: texture },
         time: { type: 'f', value: 0.0 },
-        nScale: { type: 'fv', value: [3, 6] }
+        nScale: { type: 'fv', value: [3, 3] }
       },
       vertexShader: vertexShader,
       fragmentShader: fragmentShader,
@@ -33,7 +33,7 @@ export default class Title extends Mesh {
     });
 
     this.noiseScale = {
-      x: 3.0, y: 6.0
+      x: 3.0, y: 3.0
     };
 
     this.setGUI();
@@ -52,7 +52,7 @@ export default class Title extends Mesh {
   }
 
   // 2D Canvasからテクスチャを作成する
-  createFontTexture(options) {
+  createTexture(options) {
     const canvas = document.createElement('canvas');
     const width = options.width * Config.dpr;
     const height = options.height * Config.dpr;

@@ -103,17 +103,35 @@ float snoise(vec3 v) {
 }
 
 void main() {
-  vec2 p = gl_FragCoord.xy; // 描画するピクセルの座標
+  /*
+    vec4 gl_FragCoord
+      - 各ピクセルが個別にもつ情報
+      - フラグメントシェーダでアクセスできる変数
+      - 処理しようとしているピクセルの座標
+  */
+  vec2 p = gl_FragCoord.xy; // 描画するピクセルの座標のxyをvec2型のpに格納しておく
+
+  /*
+    vec3 nStart
+      - 各ピクセルが共有してもつ情報
+      - ノイズ空間の初期座標
+  */
+
+  /*
+    vec3 nScale
+      - 各ピクセルが共有してもつ情報
+      - ノイズ座標の調整用
+  */
 
   float nx = nStart.x + p.x * nScale.x; // ノイズのｘ座標
   float ny = nStart.y + p.y * nScale.y; // ノイズのy座標
-  float nz = nStart.z; // ノイズのｚ座標
+  float nz = nStart.z;                  // ノイズのz座標
   // float nz = nStart.z + time * 0.5;
 
   float n = snoise(vec3(nx, ny, nz)); // ノイズの座標を与えて値を得る（およそ-1〜1の値が返ってくる）
   n = (1.0 + n) * 0.5; // 0〜1に変換
 
-  vec4 color = vec4(n, n, n, 1.0);
+  vec4 color = vec4(n, n, n, 1.0); // ノイズの値を色に使用する
 
   gl_FragColor = color;
 }

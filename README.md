@@ -1,5 +1,5 @@
-# glsl-tech-night-2018
-GLSL Tech Nightのデモプログラム
+# Webフロントエンドで使えるシェーダーによるノイズ表現
+GLSL Tech Night 2018. 09. 13
 
 ## Getting Started
 
@@ -8,4 +8,5 @@ $ npm install
 $ npm start
 ```
 
-http://localhost:3000
+- Demo1 : http://localhost:3000/demo1.html
+- Demo2 : http://localhost:3000/demo2.html

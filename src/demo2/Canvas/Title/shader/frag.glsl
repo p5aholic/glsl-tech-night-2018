@@ -108,7 +108,9 @@ void main() {
   vec2 uv = vUv;
 
   float n = snoise(vec3(uv.x * nScale.x, uv.y * nScale.y, time * 0.2));
-  uv.y += 0.25 * n;
+  uv.y += 0.2 * n;
+
+  // vec4 color = texture2D(texture, uv);
 
   float rDiff = +0.002;
   float gDiff = -0.002;
@@ -116,9 +118,8 @@ void main() {
   float r = texture2D(texture, uv + vec2(rDiff, 0.0)).r;
   float g = texture2D(texture, uv + vec2(gDiff, 0.0)).g;
   float b = texture2D(texture, uv + vec2(bDiff, 0.0)).b;
-
-  // vec4 color = texture2D(texture, uv);
   vec4 color = vec4(r, g, b, 1.0);
 
   gl_FragColor = color;
+  // gl_FragColor = vec4(vec3(n), 1.0);
 }

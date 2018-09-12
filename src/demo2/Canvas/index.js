@@ -47,6 +47,7 @@ export default class Canvas {
   }
 
   resize() {
+    // 画面のリサイズ処理中はレンダリングの更新処理を止める
     this.needsStopUpdate = true;
 
     this.setConfig();
