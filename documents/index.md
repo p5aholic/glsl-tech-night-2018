@@ -21,5 +21,5 @@
 - https://github.com/ashima/webgl-noise
 
 ## 参考資料
-- パーリンノイズを理解する : https://postd.cc/understanding-perlin-noise/
+- パーリンノイズを理解する : https://postd.cc/understanding-perlin-noise/
 - The Book of Shaders : https://thebookofshaders.com/11/?lan=jp
