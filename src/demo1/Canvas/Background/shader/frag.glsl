@@ -2,7 +2,7 @@ precision mediump float;
 
 uniform float time;
 uniform vec3 nStart;
-uniform vec2 nScale;
+uniform float nScale;
 
 //
 // Description : Array and textureless GLSL 2D/3D/4D simplex 
@@ -118,15 +118,16 @@ void main() {
   */
 
   /*
-    vec3 nScale
+    float nScale
       - 各ピクセルが共有してもつ情報
       - ノイズ座標の調整用
   */
 
-  float nx = nStart.x + p.x * nScale.x; // ノイズのｘ座標
-  float ny = nStart.y + p.y * nScale.y; // ノイズのy座標
-  float nz = nStart.z;                  // ノイズのz座標
-  // float nz = nStart.z + time * 0.5;
+  // ノイズの初期座標 + ピクセル座標 * 調整
+  float nx = nStart.x + p.x * nScale; // ノイズのx座標
+  float ny = nStart.y + p.y * nScale; // ノイズのy座標
+  // float nz = nStart.z;                // ノイズのz座標
+  float nz = nStart.z + time * 0.5;
 
   float n = snoise(vec3(nx, ny, nz)); // ノイズの座標を与えて値を得る（およそ-1〜1の値が返ってくる）
   n = (1.0 + n) * 0.5; // 0〜1に変換
